@@ -113,6 +113,22 @@ String Functions
 
     Converts ``string`` to uppercase.
 
+.. function:: normalize_nfd(string) -> varchar
+
+    Transforms ``string`` with NFD (Canonical Decomposition).
+
+.. function:: normalize_nfc(string) -> varchar
+
+    Transforms ``string`` with NFC (Canonical Decomposition, followed by Canonical Composition).
+
+.. function:: normalize_nfkd(string) -> varchar
+
+    Transforms ``string`` with NFKD (Compatibility Decomposition).
+
+.. function:: normalize_nfkc(string) -> varchar
+
+    Transforms ``string`` with NFKC (Compatibility Decomposition, followed by Canonical Composition).
+
 .. function:: to_utf8(string) -> varbinary
 
     Encodes ``string`` into a UTF-8 varbinary representation.

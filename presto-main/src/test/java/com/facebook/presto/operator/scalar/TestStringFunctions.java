@@ -356,6 +356,12 @@ public class TestStringFunctions
         assertFunction("CAST(UPPER(utf8(from_hex('CE')) || 'hello') AS VARBINARY)", VARBINARY, new SqlVarbinary(new byte[] {(byte) 0xCE, 'H', 'E', 'L', 'L', 'O'}));
     }
 
+    @Test
+    public void testNormalize()
+    {
+        //TODO
+    }
+
     // We do not use String toLowerCase or toUpperCase here because they can do multi character transforms
     // and we want to verify our implementation spec which states we perform case transform code point by
     // code point

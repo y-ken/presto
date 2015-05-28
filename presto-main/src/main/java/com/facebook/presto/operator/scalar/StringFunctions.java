@@ -30,6 +30,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
+import java.text.Normalizer;
 
 import static com.facebook.presto.spi.StandardErrorCode.INVALID_FUNCTION_ARGUMENT;
 import static com.facebook.presto.spi.type.VarcharType.VARCHAR;
@@ -397,6 +398,38 @@ public final class StringFunctions
     public static Slice upper(@SqlType(StandardTypes.VARCHAR) Slice slice)
     {
         return toUpperCase(slice);
+    }
+
+    @Description("converts the string to normalized NFD")
+    @ScalarFunction
+    @SqlType(StandardTypes.VARCHAR)
+    public static Slice normalize_nfd(@SqlType(StandardTypes.VARCHAR) Slice slice)
+    {
+        return Slices.utf8Slice(Normalizer.normalize(slice, Normalizer.Form.NFD));
+    }
+
+    @Description("converts the string to normalized NFC")
+    @ScalarFunction
+    @SqlType(StandardTypes.VARCHAR)
+    public static Slice normalize_nfc(@SqlType(StandardTypes.VARCHAR) Slice slice)
+    {
+        return Slices.utf8Slice(Normalizer.normalize(slice, Normalizer.Form.NFC));
+    }
+
+    @Description("converts the string to normalized NFKD")
+    @ScalarFunction
+    @SqlType(StandardTypes.VARCHAR)
+    public static Slice normalize_nfkd(@SqlType(StandardTypes.VARCHAR) Slice slice)
+    {
+        return Slices.utf8Slice(Normalizer.normalize(slice, Normalizer.Form.NFKD));
+    }
+
+    @Description("converts the string to normalized NFKC")
+    @ScalarFunction
+    @SqlType(StandardTypes.VARCHAR)
+    public static Slice normalize_nfkc(@SqlType(StandardTypes.VARCHAR) Slice slice)
+    {
+        return Slices.utf8Slice(Normalizer.normalize(slice, Normalizer.Form.NFKC));
     }
 
     @Description("decodes the UTF-8 encoded string")
